@@ -1,0 +1,72 @@
+﻿@model IEnumerable<EjercicioFinalMVC5.Models.Animal>
+
+@{
+    ViewBag.Title = "Animales-PepeZoo";
+}
+
+
+
+
+<body >
+    <div class="Container" >
+        <div class="accordion align-self-lg-end" id="accordionPanelsStayOpenExample">
+            @foreach (var item in Model)
+            {
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="@("#p"+item.AnimalID)" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne" style="background-color: black">
+                            <h4 style="color: whitesmoke">@Html.DisplayFor(modelItem => item.AnimalID)</h4> <p  style="color: whitesmoke">--</p>
+
+                            <h3 style="color: whitesmoke">@Html.DisplayFor(modelItem => item.Nombre)</h3>
+                        </button>
+                    </h2>
+                    <div id="@("p"+item.AnimalID)" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne" style="background-color: #a8a8a8">
+                        <div class="accordion-body">
+                            <div class="table-responsive d-flex justify-content-center">
+                                <table class=" table-light" CELLPADDING=" 20" style="text-align: center">
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Nombre)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.FechaNacimiento)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Imagen)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Especie.Descripcion)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Jaula.PosicionJaula)
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nombre)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                                        </td>
+                                        <td align="center">
+                                            <img class="imagenAnimal" src="@Url.Action("GetImage", "Animal", new { item.AnimalID })" style="max-height:80px; max-width:80px" />
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Especie.Descripcion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Jaula.PosicionJaula)
+                                        </td>
+                                        
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+

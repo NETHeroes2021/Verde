@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/LayoutStyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar  navbar-expand-lg navbar-light">
+        <div class="container-fluid rounded-pill bg-gradient " style="max-width: 1400px; background-color: #181934; ">
+            <img src="~/Images/pepezoo.png" width="150" height="150" />
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center " id="navbarNavDropdown">
+                <ul id="menuElements" class="nav nav-pills">
+                    <li class="navbar-item p-3 align-self-center" onmouseover="this.style.color = 'orange';">
+                        @Html.ActionLink("Inicio", "Index", "Home", null, new { Style = "color:white; font-size:2em; font-family: 'Signika',sans-serif; text-decoration:none" })
+                    </li>
+                    <li class="nav-item p-3 align-self-center" style="">
+                        @Html.ActionLink("Animales", "Index", "Animal", null, new { Style = "color:white; font-size:2em; font-family: 'Signika',sans-serif; text-decoration:none" })
+                    </li>
+                    <li class="nav-item p-3 align-self-center" style="">
+                        @Html.ActionLink("Jaulas", "Index", "Jaula", null, new { Style = "color:white; font-size:2em; font-family: 'Signika',sans-serif; text-decoration:none" })
+                    </li>
+                    <li class="nav-item p-3 align-self-center" style="">
+                        @Html.ActionLink("Galería", "Galeria", "Animal", null, new { Style = "color:white; font-size:2em; font-family: 'Signika',sans-serif; text-decoration:none" })
+                    </li>
+                    <li class="nav-item p-3 align-self-center" style="">
+                        @Html.ActionLink("Especies", "Index", "Especie", null, new { Style = "color:white; font-size:2em; font-family: 'Signika',sans-serif; text-decoration:none" })
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @*<ul class="nav nav-tabs navbar-fixed-top">
+            <li class="nav-item">
+                @Html.ActionLink("Inicio", "Index", "Home")
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" aria-haspopup="true" role="button" aria-expanded="false">Dropdown</a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Animal", "Index", "Animal")</li>
+                    <li> @Html.ActionLink("Jaula", "Index", "Jaula")</li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Contacto", "Contact", "Home")
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Acerca de", "About", "Home")
+            </li>
+        </ul>*@
+
+    <div class="container body-content" >
+        @RenderBody()
+        <hr />
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted " style="background-color: rgba(102, 102, 102, 0.8); font: Sans-serif; max-width: 1400px;  margin: 0 auto">
+        <!-- Section: Social media -->
+        <!-- Section: Social media -->
+        <!-- Section: Links  -->
+        <section class="d-flex p-2">
+            <div class="container text-center text-white text-md-start mt-3">
+                <!-- Grid row -->
+                <div class="row mt-3 ">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-3">
+                        <!-- Content -->
+                        <img src="~/Images/fondoSocialEuropeo.jpg" />
+                        @*<p >
+                                Here you can use rows and columns to organize your footer content. Lorem ipsum
+                                dolor sit amet, consectetur adipisicing elit.
+                            </p>*@
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Contact
+                        </h6>
+                        <p><i class="fas fa-home me-3"></i> 39693 Obregón, Cantabria, España</p>
+                        <p>
+                            <i class="fas fa-envelope me-3"></i>
+                            PepeZoo@pepezoo.com
+                        </p>
+                        <p><i class="fas fa-phone me-3"></i> + 948 264 856</p>
+                        <p><i class="fas fa-print me-3"></i> +  948 236 452</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+        <!-- Copyright -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-1 border-bottom">
+            <!-- Left -->
+            <!-- Left -->
+            <!-- Right -->
+            <div class="d-flex container-fluid justify-content-center text-lg-center">
+                <a class="text-reset fw-bold p-3" href="http://www.cantabria.es/">Pepe Zoo: Gobierno de Cantabria</a>
+
+                <img class="rounded-2 p-1" style="margin:10px; " src="~/Images/facebook.png" width="34" height="34">
+
+
+                <img class="rounded-2 p-1" style="margin:10px" src="~/Images/IntagramFav.png" width="34" height="34">
+
+
+                <img class="rounded-2 p-1" style="margin:10px" src="~/Images/twiterFav.png" width="34" height="34">
+
+
+                <img class="rounded-2 p-1" style="margin:10px" src="~/Images/youtubeFav.png" width="34" height="34">
+
+
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
