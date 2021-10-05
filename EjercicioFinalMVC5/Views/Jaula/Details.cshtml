@@ -1,0 +1,66 @@
+﻿@model EjercicioFinalMVC5.Models.Jaula
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div style="background-color:#808080">
+    @*<h2>Detalles de Jaulas</h2>
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PosicionJaula)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PosicionJaula)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Capacidad)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Capacidad)
+            </dd>
+
+        </dl>*@
+    <table class="table table-dark table-striped table-hover table-responsive" border="1" style="border: 1px solid whitesmoke;  text-align: center; ">
+        <tr>
+            <th colspan="2" style="text-align: center;">
+                <p style="font-weight: bolder; font-family: Comic Sans MS; font-size: 3em; color: #f3f2f2; -webkit-text-stroke: 2px black; color: #ffffff; text-align: center ">Detalles de Jaulas</p>
+            </th>
+
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PosicionJaula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacidad)
+            </th>
+
+        </tr>
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.PosicionJaula)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Capacidad)
+            </td>
+
+
+        </tr>
+
+
+    </table>
+    @Html.Action("AnimalPartialView", "Jaula", new { id = Model.JaulaID })
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-dark   " href="@Url.Action("Index", "Jaula")" _msthash="418886" _msttexthash="223262" style=" margin:10px">Regresa a la lista</a>
+    </div>
+</div>

@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ZooModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alimento">
+          <Key>
+            <PropertyRef Name="AlimentoID" />
+          </Key>
+          <Property Name="AlimentoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="Calorias" Type="float" />
+        </EntityType>
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="AnimalID" />
+          </Key>
+          <Property Name="AnimalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="EspecieID" Type="int" />
+          <Property Name="JaulaID" Type="int" />
+          <Property Name="Imagen" Type="image" />
+        </EntityType>
+        <EntityType Name="Dieta">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnimalID" Type="int" Nullable="false" />
+          <Property Name="AlimentoID" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" />
+        </EntityType>
+        <EntityType Name="Especie">
+          <Key>
+            <PropertyRef Name="EspecieID" />
+          </Key>
+          <Property Name="EspecieID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Jaula">
+          <Key>
+            <PropertyRef Name="JaulaID" />
+          </Key>
+          <Property Name="JaulaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PosicionJaula" Type="varchar" MaxLength="50" />
+          <Property Name="Capacidad" Type="int" />
+        </EntityType>
+        <Association Name="FK_Animal_Especie">
+          <End Role="Especie" Type="Self.Especie" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especie">
+              <PropertyRef Name="EspecieID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="EspecieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Jaula">
+          <End Role="Jaula" Type="Self.Jaula" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jaula">
+              <PropertyRef Name="JaulaID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="JaulaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dieta_Alimento">
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="1" />
+          <End Role="Dieta" Type="Self.Dieta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alimento">
+              <PropertyRef Name="AlimentoID" />
+            </Principal>
+            <Dependent Role="Dieta">
+              <PropertyRef Name="AlimentoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dieta_Animal">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+          <End Role="Dieta" Type="Self.Dieta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="AnimalID" />
+            </Principal>
+            <Dependent Role="Dieta">
+              <PropertyRef Name="AnimalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ZooModelStoreContainer">
+          <EntitySet Name="Alimento" EntityType="Self.Alimento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Animal" EntityType="Self.Animal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dieta" EntityType="Self.Dieta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Especie" EntityType="Self.Especie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jaula" EntityType="Self.Jaula" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Animal_Especie" Association="Self.FK_Animal_Especie">
+            <End Role="Especie" EntitySet="Especie" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Jaula" Association="Self.FK_Animal_Jaula">
+            <End Role="Jaula" EntitySet="Jaula" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dieta_Alimento" Association="Self.FK_Dieta_Alimento">
+            <End Role="Alimento" EntitySet="Alimento" />
+            <End Role="Dieta" EntitySet="Dieta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dieta_Animal" Association="Self.FK_Dieta_Animal">
+            <End Role="Animal" EntitySet="Animal" />
+            <End Role="Dieta" EntitySet="Dieta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ZooModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Alimento">
+          <Key>
+            <PropertyRef Name="AlimentoID" />
+          </Key>
+          <Property Name="AlimentoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Calorias" Type="Double" />
+          <NavigationProperty Name="Dieta" Relationship="Self.FK_Dieta_Alimento" FromRole="Alimento" ToRole="Dieta" />
+        </EntityType>
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="AnimalID" />
+          </Key>
+          <Property Name="AnimalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="EspecieID" Type="Int32" />
+          <Property Name="JaulaID" Type="Int32" />
+          <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Especie" Relationship="Self.FK_Animal_Especie" FromRole="Animal" ToRole="Especie" />
+          <NavigationProperty Name="Jaula" Relationship="Self.FK_Animal_Jaula" FromRole="Animal" ToRole="Jaula" />
+          <NavigationProperty Name="Dieta" Relationship="Self.FK_Dieta_Animal" FromRole="Animal" ToRole="Dieta" />
+        </EntityType>
+        <EntityType Name="Dieta">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnimalID" Type="Int32" Nullable="false" />
+          <Property Name="AlimentoID" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" />
+          <NavigationProperty Name="Alimento" Relationship="Self.FK_Dieta_Alimento" FromRole="Dieta" ToRole="Alimento" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK_Dieta_Animal" FromRole="Dieta" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="Especie">
+          <Key>
+            <PropertyRef Name="EspecieID" />
+          </Key>
+          <Property Name="EspecieID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK_Animal_Especie" FromRole="Especie" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="Jaula">
+          <Key>
+            <PropertyRef Name="JaulaID" />
+          </Key>
+          <Property Name="JaulaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PosicionJaula" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Capacidad" Type="Int32" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK_Animal_Jaula" FromRole="Jaula" ToRole="Animal" />
+        </EntityType>
+        <Association Name="FK_Dieta_Alimento">
+          <End Role="Alimento" Type="Self.Alimento" Multiplicity="1" />
+          <End Role="Dieta" Type="Self.Dieta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alimento">
+              <PropertyRef Name="AlimentoID" />
+            </Principal>
+            <Dependent Role="Dieta">
+              <PropertyRef Name="AlimentoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Especie">
+          <End Role="Especie" Type="Self.Especie" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especie">
+              <PropertyRef Name="EspecieID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="EspecieID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal_Jaula">
+          <End Role="Jaula" Type="Self.Jaula" Multiplicity="0..1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jaula">
+              <PropertyRef Name="JaulaID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="JaulaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dieta_Animal">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+          <End Role="Dieta" Type="Self.Dieta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="AnimalID" />
+            </Principal>
+            <Dependent Role="Dieta">
+              <PropertyRef Name="AnimalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ZooEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alimento" EntityType="Self.Alimento" />
+          <EntitySet Name="Animal" EntityType="Self.Animal" />
+          <EntitySet Name="Dieta" EntityType="Self.Dieta" />
+          <EntitySet Name="Especie" EntityType="Self.Especie" />
+          <EntitySet Name="Jaula" EntityType="Self.Jaula" />
+          <AssociationSet Name="FK_Dieta_Alimento" Association="Self.FK_Dieta_Alimento">
+            <End Role="Alimento" EntitySet="Alimento" />
+            <End Role="Dieta" EntitySet="Dieta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Especie" Association="Self.FK_Animal_Especie">
+            <End Role="Especie" EntitySet="Especie" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal_Jaula" Association="Self.FK_Animal_Jaula">
+            <End Role="Jaula" EntitySet="Jaula" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dieta_Animal" Association="Self.FK_Dieta_Animal">
+            <End Role="Animal" EntitySet="Animal" />
+            <End Role="Dieta" EntitySet="Dieta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ZooModelStoreContainer" CdmEntityContainer="ZooEntities">
+          <EntitySetMapping Name="Alimento">
+            <EntityTypeMapping TypeName="ZooModel.Alimento">
+              <MappingFragment StoreEntitySet="Alimento">
+                <ScalarProperty Name="AlimentoID" ColumnName="AlimentoID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Calorias" ColumnName="Calorias" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Animal">
+            <EntityTypeMapping TypeName="ZooModel.Animal">
+              <MappingFragment StoreEntitySet="Animal">
+                <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="EspecieID" ColumnName="EspecieID" />
+                <ScalarProperty Name="JaulaID" ColumnName="JaulaID" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dieta">
+            <EntityTypeMapping TypeName="ZooModel.Dieta">
+              <MappingFragment StoreEntitySet="Dieta">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+                <ScalarProperty Name="AlimentoID" ColumnName="AlimentoID" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Especie">
+            <EntityTypeMapping TypeName="ZooModel.Especie">
+              <MappingFragment StoreEntitySet="Especie">
+                <ScalarProperty Name="EspecieID" ColumnName="EspecieID" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jaula">
+            <EntityTypeMapping TypeName="ZooModel.Jaula">
+              <MappingFragment StoreEntitySet="Jaula">
+                <ScalarProperty Name="JaulaID" ColumnName="JaulaID" />
+                <ScalarProperty Name="PosicionJaula" ColumnName="PosicionJaula" />
+                <ScalarProperty Name="Capacidad" ColumnName="Capacidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

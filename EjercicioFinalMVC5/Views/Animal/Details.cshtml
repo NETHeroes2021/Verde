@@ -1,0 +1,55 @@
+﻿@model EjercicioFinalMVC5.Models.Animal
+
+@{
+    ViewBag.Title = "Detalles de animal";
+}
+
+
+<table class="table table-dark table-striped table-hover table-responsive" border="1" style="border: 1px solid whitesmoke;  text-align: center">
+<tr>
+    <th colspan="5" style="text-align: center">
+        <p style="font-weight: bolder; font-family: Comic Sans MS; font-size: 3em; color: #f3f2f2; -webkit-text-stroke: 2px black; color: #ffffff; text-align: center ">Detalles de Animal</p>
+    </th>
+
+</tr>
+<tr>
+    <th>
+        @Html.DisplayNameFor(model => model.Nombre)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.FechaNacimiento)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Imagen)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Especie.Descripcion)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Jaula.PosicionJaula)
+    </th>
+</tr>
+
+
+<tr>
+    <td>
+        @Html.DisplayFor(model => model.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.FechaNacimiento)
+    </td>
+    <td>
+        <img class="imagenAnimal" src="@Url.Action("GetImage", "Animal", new { Model.AnimalID })" style="max-height:80px; max-width:80px" />
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.Especie.Descripcion)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.Jaula.PosicionJaula)
+    </td>
+    
+</tr>
+
+
+</table>
+

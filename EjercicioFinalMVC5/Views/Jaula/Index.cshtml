@@ -1,0 +1,42 @@
+﻿@model IEnumerable<EjercicioFinalMVC5.Models.Jaula>
+
+@{
+    ViewBag.Title = "Jaulas";
+}
+
+
+
+
+<table class="table table-dark table-striped table-hover table-responsive" border="1" style="border: 1px solid whitesmoke;  text-align: center">
+    <tr>
+
+        <th colspan="2" style="text-align: center">
+
+            <p style="font-weight: bolder; font-family: Comic Sans MS; font-size: 3em; color: #f3f2f2; -webkit-text-stroke: 2px black; color: #ffffff; text-align: center ">Jaulas</p>
+        </th>
+
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PosicionJaula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Capacidad)
+        </th>
+        
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PosicionJaula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacidad)
+            </td>
+           
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,32 @@
+﻿
+@model IEnumerable<EjercicioFinalMVC5.Models.Jaula>
+
+
+
+
+
+
+<div class="accordion" id="accordionPanelsStayOpenExample">
+    @foreach (var item in Model)
+    {
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="@("#p"+item.JaulaID)" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne" style="background-color:black">
+                    <h3 style="color: whitesmoke; font-weight: bold;   font-size: 2.5em;">  @Html.DisplayFor(modelItem => item.JaulaID)</h3>
+                    <p style="color: whitesmoke">--</p>
+                    <h3 style="color: whitesmoke; font-weight: bold;   font-size: 2.5em;">@Html.DisplayFor(modelItem => item.PosicionJaula)</h3>
+                </button>
+            </h2>
+            <div id="@("p"+item.JaulaID)" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne" style="background-color:#505050">
+                <div class="accordion-body container-fluid">
+                    @foreach (var animal in Model)
+                    {
+                        @Html.Action("AnimalPartialView", "Jaula", new { id = animal.JaulaID })
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

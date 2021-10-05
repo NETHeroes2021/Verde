@@ -1,0 +1,38 @@
+﻿@model IEnumerable<EjercicioFinalMVC5.Models.Especie>
+
+@{
+    ViewBag.Title = "Especies";
+}
+
+<h2>Index</h2>
+
+<table class="table table-dark table-striped table-hover table-responsive" border="1" style="border: 1px solid whitesmoke;  text-align: center">
+    <tr>
+        <th colspan="3" style="text-align: center">
+            <p style="font-weight: bolder; font-family: Comic Sans MS; font-size: 3em; color: #f3f2f2; -webkit-text-stroke: 2px black; color: #ffffff; text-align: center ">Especies</p>
+        </th>
+
+    </tr>
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>Animales pertenecientes a la especie</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                <a href="@Url.Action("EspeciePartialView", "Especie", new {id = item.EspecieID })" class="btn btn-primary" style="background-color:#808080; border:1px solid black;">Localizacion</a>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
