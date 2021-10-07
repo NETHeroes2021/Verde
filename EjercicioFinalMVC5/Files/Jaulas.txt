@@ -1,1 +1,0 @@
-[{"JaulaID":1,"PosicionJaula":"NorEste","Capacidad":6},{"JaulaID":2,"PosicionJaula":"Norte","Capacidad":8},{"JaulaID":3,"PosicionJaula":"SurOeste","Capacidad":10}]
