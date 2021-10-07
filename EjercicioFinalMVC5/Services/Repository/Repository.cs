@@ -53,14 +53,14 @@ namespace EjercicioFinalMVC5.Services.Repository
                                    select p.Descripcion);
             return (List<Animal>)animalesEspecie;
         }
-        public List<Animal> getAnimalByEspecie(int especieID)
-        {
-            var animalesEspecie = (from x in db.Animal
-                                   join p in db.Especie on x.EspecieID equals p.EspecieID
-                                   where p.EspecieID == especieID
-                                   select p.Descripcion);
-            return (List<Animal>)animalesEspecie;
-        }
+        //public List<Animal> getAnimalByEspecie(int especieID)
+        //{
+        //    var animalesEspecie = (from x in db.Animal
+        //                           join p in db.Especie on x.EspecieID equals p.EspecieID
+        //                           where p.EspecieID == especieID
+        //                           select p.Descripcion);
+        //    return (List<Animal>)animalesEspecie;
+        //}
 
         public void saveAnimal(Animal animal)
         {
