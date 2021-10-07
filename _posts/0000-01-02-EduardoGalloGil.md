@@ -1,0 +1,3 @@
+Conoces la trajedia de Darth Plagueis el sabio?
+
+Eso pensé. Los jedi no cuentan esa historia, es una leyenda sith. Darth Plagueis era un señor oscuro de los sith tan poderoso y tan sabio que usaba la fuerza para influir sobre las midiclorianos y crear vida. Tenia tal conocimiento del lado oscuro que incluso podia impedir que sus amados murieran. El lado oscuro de la fuerza es el camino a muchas habilidades que varios consideran nada naturales. Se volvio muy poderoso, lo único que temia era perder su poder, lo que finalmente sucedió. Por desgracia le enseño a su aprendiz todo lo que sabia, y su aprendiz lo asesinó mientras dormia. Irónico, salvaba a otros de morir pero no pudo a si mismo
